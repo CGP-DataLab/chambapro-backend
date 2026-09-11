@@ -4,6 +4,3 @@ Aprendiz: Cesar Giovanny Pardo Romero
 
 Enlace del repositorio remoto:
 https://github.com/CGP-DataLab/chambapro-backend
-
-(Verifica que este enlace corresponda exactamente al repositorio que
-creaste en GitHub para este proyecto antes de subir la entrega.)
