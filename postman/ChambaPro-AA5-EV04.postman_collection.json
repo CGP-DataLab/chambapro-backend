@@ -1,0 +1,99 @@
+{
+  "info": {
+    "name": "ChambaPro - API del proyecto (AA5-EV04)",
+    "description": "Colección para probar los servicios de anuncios, usuarios y acuerdos de ChambaPro (GA7-220501096-AA5-EV03/EV04).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:4000" }
+  ],
+  "item": [
+    {
+      "name": "0. Health check (servidor activo)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{base_url}}/", "host": ["{{base_url}}"], "path": [""] }
+      }
+    },
+    {
+      "name": "1. Listar anuncios",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{base_url}}/api/anuncios", "host": ["{{base_url}}"], "path": ["api", "anuncios"] }
+      }
+    },
+    {
+      "name": "2. Crear anuncio (exitoso)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Jardinero\",\n  \"descripcion\": \"Mantenimiento de jardines residenciales\",\n  \"ciudad\": \"Villavicencio\",\n  \"salario\": 40000,\n  \"anuncianteId\": 1\n}"
+        },
+        "url": { "raw": "{{base_url}}/api/anuncios", "host": ["{{base_url}}"], "path": ["api", "anuncios"] }
+      }
+    },
+    {
+      "name": "3. Crear anuncio (validación - error esperado)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"titulo\": \"AB\",\n  \"salario\": -5\n}" },
+        "url": { "raw": "{{base_url}}/api/anuncios", "host": ["{{base_url}}"], "path": ["api", "anuncios"] }
+      }
+    },
+    {
+      "name": "4. Obtener anuncio por id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{base_url}}/api/anuncios/2", "host": ["{{base_url}}"], "path": ["api", "anuncios", "2"] }
+      }
+    },
+    {
+      "name": "5. Anuncio inexistente (error esperado)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{base_url}}/api/anuncios/999", "host": ["{{base_url}}"], "path": ["api", "anuncios", "999"] }
+      }
+    },
+    {
+      "name": "6. Obtener perfil de usuario",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{base_url}}/api/usuarios/1", "host": ["{{base_url}}"], "path": ["api", "usuarios", "1"] }
+      }
+    },
+    {
+      "name": "7. Confirmar acuerdo (exitoso)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"anuncioId\": 1,\n  \"trabajadorId\": 2\n}" },
+        "url": { "raw": "{{base_url}}/api/acuerdos", "host": ["{{base_url}}"], "path": ["api", "acuerdos"] }
+      }
+    },
+    {
+      "name": "8. Confirmar acuerdo (validación - error esperado)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{}" },
+        "url": { "raw": "{{base_url}}/api/acuerdos", "host": ["{{base_url}}"], "path": ["api", "acuerdos"] }
+      }
+    },
+    {
+      "name": "9. Listar acuerdos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{base_url}}/api/acuerdos", "host": ["{{base_url}}"], "path": ["api", "acuerdos"] }
+      }
+    }
+  ]
+}
